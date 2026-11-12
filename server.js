@@ -8,7 +8,20 @@ const app = express();
 const PORT = process.env.PORT || 3000;
 
 app.use(express.json());
-app.use(express.static(__dirname));
+
+
+// Serve frontend files only
+app.get("/", (req, res) => {
+    res.sendFile(path.join(__dirname, "index.html"));
+});
+
+app.get("/script.js", (req, res) => {
+    res.sendFile(path.join(__dirname, "script.js"));
+});
+
+app.get("/styles.css", (req, res) => {
+    res.sendFile(path.join(__dirname, "styles.css"));
+});
 
 
 // Upload folder
